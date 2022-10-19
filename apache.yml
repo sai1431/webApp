@@ -1,4 +1,4 @@
----
+  ---
 - hosts: webservers 
   become: True
   tasks:
@@ -8,9 +8,11 @@
         state: "present"
     - name: Start Apache server
       service:
-        name: httpd
-        state: started
-        enabled: True
+        command: //opt/apache-tomcat-8.5.83/bin/startup.sh
+		      sudo: true
+		      sudo_user: ec2-user
+          state: started
+          enabled: True
     - name: Deploy static website
       copy:
         src: target/webappExample.war
