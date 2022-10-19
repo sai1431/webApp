@@ -6,10 +6,11 @@
       yum:
         name: "httpd"
         state: "present"
-    - name: Start Tomcat
-  ````command: /home/tomcat/apache-tomcat-7.0.42/bin/startup.sh
-  ````sudo: true
-  ````sudo_user: ec2-user
+    - name: Start Apache server
+      service:
+        name: httpd
+        state: started
+        enabled: True
     - name: Deploy static website
       copy:
         src: target/webappExample.war
